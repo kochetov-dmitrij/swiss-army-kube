@@ -104,15 +104,16 @@ module "nginx" {
   google-cookie-secret = var.google-cookie-secret
 }
 
-#module "alb-ingress" {
-#  module_depends_on = [module.system.cert-manager]
-#  source            = "../modules/ingress/alb-ingress"
-#  cluster_name      = module.kubernetes.cluster_name
-#  domains           = var.domains
-#  vpc_id            = module.network.vpc_id
-#  aws_region        = var.aws_region
-#  config_path = "${path.module}/kubeconfig_${var.cluster_name}"
-#}
+module "alb-ingress" {
+  depends_on = [module.system.cert-manager]
+  count = 1
+  source            = "../modules/ingress/alb-ingress"
+  cluster_name      = module.kubernetes.cluster_name
+  domains           = var.domains
+  vpc_id            = module.network.vpc_id
+  aws_region        = var.aws_region
+  config_path = "${path.module}/kubeconfig_${var.cluster_name}"
+}
 
 # Argoproj: all-in-one
 module "argo" {

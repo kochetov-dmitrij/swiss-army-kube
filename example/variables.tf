@@ -28,6 +28,12 @@ variable "config_path" {
   description = "The kubernetes config file path"
 }
 
+variable "network_enabled" {
+  type        = bool
+  description = "Install network module?"
+  default     = "true"
+}
+
 variable "aws_private" {
   type        = string
   description = "Use private zone or public"
