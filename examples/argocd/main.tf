@@ -55,7 +55,7 @@ module "argocd" {
   module_depends_on = [module.network.vpc_id, module.kubernetes.cluster_name]
   source            = "../../modules/cicd/argo/modules/cd"
 
-  branch       = "feature-argocd-module"
+  branch       = "test-dkharlamov"
   owner        = "provectus"
   repository   = "swiss-army-kube"
   cluster_name = module.kubernetes.cluster_name
