@@ -21,18 +21,8 @@ module "eks" {
 
   map_users = concat(var.admin_arns, var.user_arns)
 
-  tags = {
-    Environment = var.environment
-    Project     = var.project
-  }
-
   workers_additional_policies = [
-    "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-    "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess",
-    "arn:aws:iam::aws:policy/AmazonRoute53FullAccess",
-    "arn:aws:iam::aws:policy/AmazonRoute53AutoNamingFullAccess",
-    "arn:aws:iam::aws:policy/AmazonElasticFileSystemFullAccess",
-    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess",
+    "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
   ]
 
   workers_group_defaults = {
